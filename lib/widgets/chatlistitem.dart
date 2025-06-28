@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget ChatListItem(url, name, msg, seen) {
+Widget ChatListItem(url, name, msg, seen, time) {
   return Padding(
     padding: const EdgeInsets.only(top: 15),
     child: Row(
@@ -23,7 +23,7 @@ Widget ChatListItem(url, name, msg, seen) {
                 Row(
                   children: [
                     Icon(
-                      !seen ? Icons.check : Icons.done_all,
+                      Icons.done_all,
                       color: !seen ? Color(0xFFabacac) : Colors.blue,
                       size: 15,
                     ),
@@ -45,7 +45,7 @@ Widget ChatListItem(url, name, msg, seen) {
         Column(
           children: [
             Text(
-              "2:10 PM",
+              time,
               style: TextStyle(
                 color: seen ? Color(0xFFabacac) : Color(0xFF23c063),
                 fontSize: 12,
@@ -53,20 +53,22 @@ Widget ChatListItem(url, name, msg, seen) {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 22, top: 3),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFF23c063),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                width: 20,
-                height: 20,
-                child: Text(
-                  "2",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              padding: const EdgeInsets.only(left: 25, top: 3),
+              child: !seen
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFF23c063),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      width: 20,
+                      height: 20,
+                      child: Text(
+                        "2",
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  : SizedBox.shrink(),
             ),
           ],
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
-Widget UpdateList(url, name, msg, seen) {
+Widget UpdateList(url, name, msg, seen, follow) {
   return Padding(
     padding: const EdgeInsets.only(top: 15),
     child: Row(
@@ -40,27 +40,35 @@ Widget UpdateList(url, name, msg, seen) {
 
         Column(
           children: [
-            Text(
-              "2:10 PM",
-              style: TextStyle(
-                color: seen ? Color(0xFFabacac) : Color(0xFF23c063),
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            follow
+                ? Text(
+                    follow ? "2:10 PM" : "",
+                    style: TextStyle(
+                      color: seen ? Color(0xFFabacac) : Color(0xFF23c063),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : SizedBox.shrink(),
             Padding(
-              padding: const EdgeInsets.only(left: 22, top: 3),
+              padding: const EdgeInsets.only(left: 25, top: 3),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFF23c063),
-                  borderRadius: BorderRadius.circular(10),
+                  color: Color(follow ? 0xFF23c063 : 0xFF113629),
+                  borderRadius: BorderRadius.circular(follow ? 10 : 15),
                 ),
-                width: 20,
-                height: 20,
-                child: Text(
-                  "2",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
+                width: follow ? 20 : 70,
+                height: follow ? 20 : 25,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    follow ? "2" : "Follow",
+                    style: TextStyle(
+                      color: follow ? Colors.white : Color(0xFFe4ffe7),
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
